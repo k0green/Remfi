@@ -1,0 +1,19 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="~/StyleSheet.css">
+</head>
+<body>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <header class="head-form">
+            <h2>Registration</h2>
+        </header>
+
+        <input placeholder="Name" name="Name">
+        <input placeholder="Login" name="Login">
+        <input type="password" placeholder="Password" name="Password">
+        <input type="password" placeholder="Confirm password" name="ConfirmPassword">
+        <p><input type="submit" value="Sign-up" /></p>
+    }
+</body>
+</html>

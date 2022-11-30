@@ -1,0 +1,31 @@
+﻿<head>
+    <link rel="stylesheet" href="~/table.css">
+</head>
+
+@model IEnumerable<NetflixMVC.Entities.Film>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Producer</th>
+            <th>Release data</th>
+            <th>More..</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Rating</td>
+                <td>@item.Genre</td>
+                <td>@item.Producer</td>
+                <td>@item.ReleaseData</td>
+                <td><a href="~/Film/AdditionalInformation?filmId=@item.Id">Additional information</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

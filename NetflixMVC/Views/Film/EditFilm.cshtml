@@ -1,0 +1,52 @@
+﻿@model NetflixMVC.Entities.Film
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/CreateForm.css">
+</head>
+<a asp-action="AdminFirstPage" asp-controller="Home">move to main page</a>
+<body>
+    <style>
+        #container {
+            width: 500px;
+            margin: 0 auto;
+            background: url("faux-columns.png") repeat-y;
+            overflow: hidden;
+        }
+
+        #sidebar {
+            float: left;
+        }
+
+        #content {
+            float: right;
+        }
+    </style>
+<form asp-action="EditFilm" asp-controller="Film" asp-route-id="@Model.Id">
+        <header class="head-form">
+            <h2>Edit</h2>
+        </header>
+        <div id="container">
+            <div id="sidebar">
+                <p>
+                    <input type="text" asp-for="Name" />
+                    <input type="text" asp-for="DurationTime" />
+                    <input asp-for="Rating" />
+                    <input type="text" asp-for="ReleaseData" />
+                    <input type="text" asp-for="Country" />
+                    <input type="text" asp-for="Producer" />
+                </p>
+            </div>
+            <div id="content">
+                <p>
+                    <input type="text" asp-for="Genre" />
+                    <input type="text" asp-for="Description" />
+                    <input type="text" asp-for="CheckSeries" />
+                    <input asp-for="Link" />
+                    <input type="submit" value="Create" />
+                </p>
+            </div>
+        </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<head>
+    <link rel="stylesheet" href="~/table.css">
+</head>
+
+@model IEnumerable<NetflixMVC.Models.SeriesDisplayModel>
+
+<button class="create">
+    <a asp-action="CreateSeries" asp-controller="Series">Add series</a>
+</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Season</th>
+            <th>Number of series</th>
+            <th>Your mark</th>
+            <th>Your comments</th>
+            <th>Number of views</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Season</td>
+                <td>@item.NumberOfSeries</td>
+                <td>@item.Mark
+
+                    <button class="submits">
+                        <a href="~/UserSeriesDetails/AddSeriesMark?seriesId=@item.SeriesId">Add mark</a>
+                    </button>
+                </td>
+                <td>
+                    @item.Comment
+                    <button class="submits">
+                        <a href="~/UserSeriesDetails/AddSeriesComment?seriesId=@item.SeriesId">Add comment</a>
+                    </button>
+                </td>
+                <td>@item.NumberOfView  <button class="add"><a href="~/UserSeriesDetails/AddAmountOfView?seriesId=@item.SeriesId">+</a></button></td>
+                <td>
+                    <button class="submits">
+                        <a href="~/Series/EditSeries?id=@item.SeriesId">edit series</a>
+                    </button>
+                </td>
+                <td>
+
+                    <button class="submits">
+                        <a href="~/Series/DeleteSeries?id=@item.SeriesId">delete series</a>
+                    </button>
+                </td>
+                @*<td><a href="~/Film/DeleteFilm?id=@item.FilmId">delete film</a></td>
+            <td><a href="~/Film/AdditionalInformation?filmId=@item.FilmId">Additional information</a></td>*@
+                <td>
+            </tr>
+        }
+    </tbody>
+</table>

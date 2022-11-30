@@ -1,0 +1,59 @@
+﻿@model NetflixMVC.Entities.Film
+<head>
+    <link rel="stylesheet" href="~/AddInf.css">
+</head>
+<a asp-action="AdminFirstPage" asp-controller="Home">move to main page</a>
+<div id="contact" class="panel">
+    <div class="content">
+
+    <form>
+        <h2>@Html.DisplayFor(model => model.Name)</h2>
+        <p>@Html.DisplayFor(model => model.Rating) @Html.DisplayFor(model => model.ReleaseData) @Html.DisplayFor(model => model.DurationTime) @Html.DisplayFor(model => model.Genre)</p>
+        <p>@Html.DisplayFor(model => model.Description)</p>
+        <p>@Html.DisplayFor(model => model.Producer)</p>
+        <p>@Html.DisplayFor(model => model.Country)</p>
+            <p>Your amount of watch @ViewBag.UserFilm <a href="~/UserFilm/AddAmountOfView?id=@Model.Id">+</a></p>
+            <p>Your own mark: @ViewBag.Mark  <a href="~/UserFilmDetails/AddFilmMark?filmId=@Model.Id">Add mark</a></p>
+            <p>Your own comment: @ViewBag.Comment   <a href="~/UserFilmDetails/AddFilmComment?filmId=@Model.Id">Add comment</a></p>
+            <button class="btn submits sign-up">
+               <a href="@Html.DisplayFor(model => model.Link)">Watch</a>
+            </button>
+        @if(ViewBag.CheckSeries)
+        {
+            <button class="btn submits sign-up">
+                    <a href="~/Series/DisplayAllSeriesByFilmId?filmId=@Model.Id">Series</a>
+            </button>
+        }
+    </form>
+</div>
+</div>
+
+@*<head>
+    <link rel="stylesheet" href="~/AddInf.css">
+</head>
+<a asp-action="AdminFirstPage" asp-controller="Home">move to main page</a>
+<div id="contact" class="panel">
+    <div class="content">
+
+    <form>
+        <h2>@Html.DisplayFor(model => model.Name)</h2>
+        <p>@Html.DisplayFor(model => model.Rating) @Html.DisplayFor(model => model.ReleaseData) @Html.DisplayFor(model => model.DurationTime) @Html.DisplayFor(model => model.Genre)</p>
+        <p>@Html.DisplayFor(model => model.Description)</p>
+        <p>@Html.DisplayFor(model => model.Producer)</p>
+        <p>@Html.DisplayFor(model => model.Country)</p>
+            <p>Your amount of watch @Model.NumberOfView <a href="~/UserFilm/AddAmountOfView?id=@Model.Id">+</a></p>
+            <p>Your own mark: @ViewBag.Mark  <a href="~/UserFilmDetails/AddFilmMark?filmId=@Model.Id">Add mark</a></p>
+            <p>Your own comment: @ViewBag.Comment   <a href="~/UserFilmDetails/AddFilmComment?filmId=@Model.Id">Add comment</a></p>
+            <button class="btn submits sign-up">
+               <a href="@Html.DisplayFor(model => model.Link)">Watch</a>
+            </button>
+        @if(Model.CheckSeries==true)
+        {
+            <button class="btn submits sign-up">
+                    <a href="~/Series/DisplayAllSeriesByFilmId?filmId=@Model.Id">Series</a>
+            </button>
+        }
+    </form>
+</div>
+</div>*@
+

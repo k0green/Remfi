@@ -1,0 +1,131 @@
+﻿
+<body>
+    <style>
+        .rating-area {
+            overflow: hidden;
+            width: 265px;
+            margin: 0 auto;
+        }
+
+            .rating-area:not(:checked) > input {
+                display: none;
+            }
+
+            .rating-area:not(:checked) > label {
+                float: right;
+                width: 42px;
+                padding: 0;
+                cursor: pointer;
+                font-size: 32px;
+                line-height: 32px;
+                color: lightgrey;
+                text-shadow: 1px 1px #bbb;
+            }
+
+                .rating-area:not(:checked) > label:before {
+                    content: '★';
+                }
+
+            .rating-area > input:checked ~ label {
+                color: gold;
+                text-shadow: 1px 1px #c60;
+            }
+
+            .rating-area:not(:checked) > label:hover,
+            .rating-area:not(:checked) > label:hover ~ label {
+                color: gold;
+            }
+
+            .rating-area > input:checked + label:hover,
+            .rating-area > input:checked + label:hover ~ label,
+            .rating-area > input:checked ~ label:hover,
+            .rating-area > input:checked ~ label:hover ~ label,
+            .rating-area > label:hover ~ input:checked ~ label {
+                color: gold;
+                text-shadow: 1px 1px goldenrod;
+            }
+
+        .rate-area > label:active {
+            position: relative;
+        }
+        body {
+            background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+            background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: 'Vibur', cursive;
+            /*   the main font */
+            font-family: 'Abel', sans-serif;
+            opacity: .95;
+            /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+        }
+
+        form {
+            width: 450px;
+            min-height: 500px;
+            height: auto;
+            border-radius: 5px;
+            margin: 2% auto;
+            box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+            padding: 2%;
+            background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+        }
+
+        input {
+            width: 240px;
+            height: 500px;
+            margin-top: 2%;
+            padding: 15px;
+            font-size: 16px;
+            font-family: 'Abel', sans-serif;
+            color: #5E6472;
+            outline: none;
+            border: none;
+            border-radius: 0px 5px 5px 0px;
+            transition: 0.2s linear;
+            margin: 2% auto;
+            display: block;
+            height: 10%;
+        }
+
+        button {
+            display: inline-block;
+            color: #252537;
+            width: 280px;
+            height: 50px;
+            padding: 0 20px;
+            background: #fff;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s linear;
+            margin: 7% auto;
+            letter-spacing: 0.05em;
+        }
+        /* Submits */
+        .submits {
+            width: 48%;
+            display: inline-block;
+            float: left;
+        }
+    </style>
+    @using (Html.BeginForm("AddSeriesMark", "UserSeriesDetails", FormMethod.Post))
+    {
+    <div class="rating-area">
+        <input type="radio" id="star-5" name="mark" value="5">
+        <label for="star-5" title="Оценка «5»"></label>
+        <input type="radio" id="star-4" name="mark" value="4">
+        <label for="star-4" title="Оценка «4»"></label>
+        <input type="radio" id="star-3" name="mark" value="3">
+        <label for="star-3" title="Оценка «3»"></label>
+        <input type="radio" id="star-2" name="mark" value="2">
+        <label for="star-2" title="Оценка «2»"></label>
+        <input type="radio" id="star-1" name="mark" value="1">
+        <label for="star-1" title="Оценка «1»"></label>
+            <p><input type="submit" value="Войти" /></p>
+    </div>
+
+    }
+</body>

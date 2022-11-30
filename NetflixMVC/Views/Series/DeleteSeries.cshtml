@@ -1,0 +1,19 @@
+﻿@model NetflixMVC.Entities.Series
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/CreateForm.css">
+</head>
+<body>
+    @using (Html.BeginForm("DeleteSeries", "Series", FormMethod.Post))
+    {
+        <header class="head-form">
+            <h2>Delete</h2>
+            <p>Are you sure to delete</p>
+            <p>Season @Html.DisplayFor(model=>model.Season)</p>
+            <p>Series @Html.DisplayFor(model=>model.NumberOfSeries)</p>
+        </header>
+        <p><input type="submit" value="Delete" /></p>
+    }
+</body>
+</html>

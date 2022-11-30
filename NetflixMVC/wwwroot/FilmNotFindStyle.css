@@ -1,0 +1,462 @@
+﻿
+/*body {
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Vibur', cursive;*/
+    /*   the main font */
+    /*font-family: 'Abel', sans-serif;
+    opacity: .95;*/
+    /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+/*}
+
+.form-enter {
+    width: auto;
+    float: right;
+    margin-right: 30px;
+    margin-top: 0px;
+}*/
+
+/*a {
+    margin-right: 30px;
+}*/
+
+/*.pressed-button {
+    text-decoration: none;
+    display: flex;
+    padding: 5px 10px;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 0;
+    text-align: right;
+    margin: 10px 20px;
+    border-radius: 30px;
+    border-color: #ffffff;*/
+    /*    background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);*/
+    /*background-image: linear-gradient(45deg, #E3FDF5 0%, #33d9de 50%, #FFE6FA 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-position: 100% 0;
+    background-size: 200% 200%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: white;
+    box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+    transition: .5s;
+}
+
+    .pressed-button:hover {
+        box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+        background-position: 0 0;
+    }
+
+.text-field__group {
+    display: flex;
+}*/
+/* кнопка */
+/*.text-field__btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;*/
+    /*color: #212529;*/
+    /*color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: #eee;
+    border: 3px solid #eee;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: background-color .15s ease-in-out;
+}
+
+    .text-field__btn:hover {
+        background-color: #bdbdbd;
+    }
+
+.text-field__group .text-field__input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+    z-index: 2;
+    width: 390px;
+    height: 50px;
+    border-radius: 10px 0 0 10px;
+    margin-left: 31%;
+    margin-bottom: 20%;
+    outline: none;
+    border: none;
+}
+
+.text-field__group .text-field__btn {
+    position: relative;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 20%;
+    outline: none;
+}*/
+
+/*.form-find {
+    margin-top: 30px;
+}*/
+
+/*h2{
+    margin: 0px;
+}
+.header-name {
+    font-family: 'Abel', sans-serif;*/
+    /*color: #fae3fd;*/
+    /*color: #ffffff;
+    font-size: 72px;
+    text-align: center;*/
+    /*    padding:  0 200px;*/
+    /*    margin-top: 10%;*/
+/*}
+
+a {
+    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.div-btn {
+    margin-right: 30px;
+    margin-top: 0;
+}*/
+
+/* Оформление боковой панели */
+/*#side-checkbox {
+    display: none;
+}
+.side-panel {
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: -360px;
+    background: #f3beff;
+    transition: all 0.5s;
+    width: 320px;
+    height: 100vh;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.4);
+    color: #FFF;
+    padding: 40px 20px;
+}
+.side-title {
+    font-size: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #BFE2FF;
+}*/
+/* Оформление кнопки на странице */
+/*.side-button-1-wr {
+    text-align: center;*/ /* Контейнер для кнопки, чтобы было удобнее ее разместить */
+/*}
+.side-button-1 .side-b {
+    margin: 10px;
+    text-decoration: none;
+    position: relative;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 10px 3px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', Тahoma, sans-serif;
+    background: #fae3fd;
+    cursor: pointer;
+    border: 2px solid #BFE2FF;
+    width: 40px;
+}
+    .side-button-1 .side-b:hover,
+    .side-button-1 .side-b:active,
+    .side-button-1 .side-b:focus {
+        color: #FFE6FA;
+    }
+.side-button-1 .side-b:after,
+.side-button-1 .side-b:before {
+    position: absolute;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    transition: all 280ms ease-in-out;
+    width: 0;
+}
+.side-button-1 .side-open:after,
+.side-button-1 .side-open:before {
+    background: white;
+}
+.side-button-1 .side-close:after,
+.side-button-1 .side-close:before {
+    background: red;
+}
+.side-button-1 .side-b:before {
+    top: -6px;
+}
+.side-button-1 .side-b:hover:after,
+.side-button-1 .side-b:hover:before {
+    width: 100%;
+    left: 0;
+}*/
+/* Переключатели кнопки 1 */
+/*.side-button-1 .side-close {
+    display: none;
+}
+#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-open {
+    display: none;
+}
+#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-close {
+    display: block;
+}
+#side-checkbox:checked + .side-panel {
+    left: 0;
+}*/
+/* Оформление кнопки на панеле */
+/*.side-button-2 {
+    font-size: 30px;
+    border-radius: 20px;
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    transform: rotate(45deg);
+    color: #BFE2FF;   
+    transition: all 280ms ease-in-out;   
+}
+    .side-button-2:hover {
+        transform: rotate(45deg) scale(1.1);
+        color: #FFE6FA;
+    }*/
+
+form {
+    margin-top: 0px;
+    width: 450px;
+    height: 500px;
+    border-radius: 5px;
+    /*    margin: 2% auto;*/
+    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    /*    padding: 2%;*/
+    background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+}
+
+a {
+    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    color: #000000;
+    text-decoration: none;
+}
+
+/*button {
+    display: inline-block;
+    color: #252537;
+    width: 280px;
+    height: 50px;
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s linear;
+    margin: 7% auto;
+    letter-spacing: 0.05em;
+}
+ Submits 
+.submits {
+    width: 48%;
+    display: inline-block;
+    float: left;
+}
+
+       Forgot Password button FAF3DD  
+.frgt-pass {
+    background: transparent;
+    margin-right: 2%;
+}*/
+
+/*     Sign Up button  
+.sign-up {
+    background: #B8F2E6;
+}*/
+
+header {
+    margin: 2% auto;
+    text-align: center;
+}
+
+body {
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Vibur', cursive;
+    /*   the main font */
+    font-family: 'Abel', sans-serif;
+    opacity: .95;
+    /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+}
+
+
+button {
+    font-size: 2em;
+    background: #FFE6FA;
+    color: #000000;
+    border: 0.25rem solid #FFE6FA;
+    /*padding: 0.85em 0.75em;
+    margin: 1rem;*/
+    width: 450px;
+    height: 500px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    /*margin-left:60px;*/
+}
+
+    button:hover {
+        color: #000000;
+    }
+
+    button::after {
+        content: "";
+        background: #FFF;
+        position: absolute;
+        z-index: -1;
+        padding: 0.85em 0.75em;
+        display: block;
+    }
+
+    button[class^="slide"]::after {
+        transition: all 0.35s;
+    }
+
+    button[class^="slide"]:hover::after {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        transition: all 0.35s;
+    }
+
+    button.slide_from_left::after {
+        top: 0;
+        bottom: 0;
+        left: -100%;
+        right: 100%;
+    }
+
+    button.slide_from_right::after {
+        top: 0;
+        bottom: 0;
+        left: 100%;
+        right: -100%;
+    }
+
+    button.slide_from_top::after {
+        left: 0;
+        right: 0;
+        top: -100%;
+        bottom: 100%;
+    }
+
+    button.slide_from_bottom::after {
+        left: 0;
+        right: 0;
+        top: 100%;
+        bottom: -100%;
+    }
+
+    button[class^="grow"]::after {
+        transition: all 0.3s ease;
+    }
+
+    button[class^="grow"]:hover::after {
+        transition: all 0.3s ease-out;
+    }
+
+    button.grow_box::after {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        transform: scale(0, 0);
+    }
+
+    button.grow_box:hover::after {
+        transform: scale(1, 1);
+    }
+
+    button.grow_ellipse::after {
+        border-radius: 50%;
+        left: -50%;
+        right: -50%;
+        top: -150%;
+        bottom: -150%;
+        line-height: 8.34em;
+        transform: scale(0, 0);
+    }
+
+    button.grow_ellipse:hover::after {
+        transform: scale(1, 1);
+    }
+
+    button.grow_skew_forward::after {
+        left: -20%;
+        right: -20%;
+        top: 0;
+        bottom: 0;
+        transform: skewX(-45deg) scale(0, 1);
+    }
+
+    button.grow_skew_forward:hover::after {
+        transform: skewX(-45deg) scale(1, 1);
+    }
+
+    button.grow_skew_backward {
+        font-size: 2em;
+        background: #E3FDF5;
+        color: #000000;
+        border: 0.25rem solid #E3FDF5;
+        /*padding: 0.85em 0.75em;*/
+        /*margin: 1rem;*/
+        width: 450px;
+        height: 500px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        /*margin-left: 60px;*/
+    }
+
+    button.grow_skew_backward::after {
+        left: -20%;
+        right: -20%;
+        background: #FFF;
+        top: 0;
+        bottom: 0;
+        transform: skewX(45deg) scale(0, 1);
+    }
+
+    button.grow_skew_backward:hover::after {
+        transform: skewX(45deg) scale(1, 1);
+    }
+
+    button.grow_spin::after {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        transform: scale(0, 0) rotate(-180deg);
+    }
+
+    button.grow_spin:hover::after {
+        transform: scale(1, 1) rotate(0deg);
+    }

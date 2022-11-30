@@ -1,0 +1,21 @@
+﻿@model NetflixMVC.Entities.Film
+<head>
+    <link rel="stylesheet" href="~/AddInf.css">
+</head>
+<a asp-action="AdminFirstPage" asp-controller="Home">move to main page</a>
+<div id="contact" class="panel">
+    <div class="content">
+
+        <form>
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+            <p>@Html.DisplayFor(model => model.Rating) @Html.DisplayFor(model => model.ReleaseData) @Html.DisplayFor(model => model.DurationTime) @Html.DisplayFor(model => model.Genre)</p>
+            <p>@Html.DisplayFor(model => model.Description)</p>
+            <p>@Html.DisplayFor(model => model.Producer)</p>
+            <p>@Html.DisplayFor(model => model.Country)</p>
+            <button class="btn submits sign-up">
+                <a href="@Html.DisplayFor(model => model.Link)">Watch</a>
+            </button>
+        </form>
+    </div>
+</div>
+

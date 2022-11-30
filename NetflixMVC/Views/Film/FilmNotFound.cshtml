@@ -1,0 +1,38 @@
+﻿<head>
+    <link rel="stylesheet" href="~/FilmNotFindStyle.css">
+</head>
+
+    <header class="head-form"><h2>Мы не смогли найти такого фильма. Может быть вы хотите добавить его сами?</h2></header>
+
+<body>
+    <style>
+        #container {
+            width: 100%;
+            background: url("faux-columns.png") repeat-y;
+            overflow: hidden;
+        }
+
+        #sidebar {
+            float: left;
+            margin-left:100px
+        }
+
+        #content {
+            float: right;
+            margin-right: 100px;
+        }
+    </style>
+
+        <div id="container">
+            <div id="sidebar">
+            <form action="~/Film/CreateFilm">
+                <button class="grow_skew_backward">Add film</button>
+                </form>
+            </div>
+            <div id="content">
+                <form action="~/Film/FindFilm">
+                <button class ="grow_skew_forward">Back</button>
+                </form>
+            </div>
+        </div>
+</body>

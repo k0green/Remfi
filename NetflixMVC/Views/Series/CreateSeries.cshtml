@@ -1,0 +1,23 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="~/CreateForm.css">
+</head>
+<body>
+    @using (Html.BeginForm("CreateSeries", "Series", FormMethod.Post))
+    {
+        <header class="head-form">
+            <h2>Create</h2>
+        </header>
+
+        <div id="container">
+            <div id="sidebar">
+                <p>
+                    @Html.TextBox("Season", "Number of season")
+                    @Html.TextBox("NumberOfSeries", "Number of series")
+                    <input type="submit" value="Create" />
+                </p>
+            </div>
+        </div>
+    }
+</body>
+</html>

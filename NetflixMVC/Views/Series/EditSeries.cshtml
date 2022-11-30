@@ -1,0 +1,20 @@
+﻿@model NetflixMVC.Entities.Series
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/CreateForm.css">
+</head>
+<a asp-action="AdminFirstPage" asp-controller="Home">move to main page</a>
+<body>
+    <form asp-action="EditSeries" asp-controller="Series" asp-route-id="@Model.Id">
+        <header class="head-form">
+            <h2>Edit</h2>
+        </header>
+        <p>
+            <input type="text" asp-for="Season" />
+            <input type="text" asp-for="NumberOfSeries" />
+            <input type="submit" value="Edit" />
+        </p>
+    </form>
+</body>
+</html>

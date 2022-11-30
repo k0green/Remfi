@@ -1,0 +1,39 @@
+﻿
+<head>
+    <link rel="stylesheet" href="~/FindFilmStyle.css">
+</head>
+<body>
+<form style="margin-left: 87%;" action="~/Account/Login">
+    <button class="pressed-button">Sign-in</button>
+</form>
+    <header class="header-name">
+        <h2 style="margin-top: 100px">NETFLIX</h2>
+    </header>
+    <form class="form-find" asp-action="FindFilmPost" asp-controller="Film">
+            <div class="text-field__group">
+                <input class="text-field__input" type="text" id="name" name="name">
+                <button class="text-field__btn" type="submit">Найти</button>
+            </div>
+    </form>
+</body>
+
+<input type="checkbox" id="side-checkbox" />
+<div class="side-panel">
+    <label class="side-button-2" for="side-checkbox">+</label>
+    <div class="side-title">
+        <form action="~/Account/Login">
+            <button class="pressed-button">Sign-in</button>
+        </form>
+    </div>
+    <p>
+        <a href="~/Film/DisplayAllFilmForOneUser">My films</a>
+    </p>
+    <p><a href="~/Film/DisplayAllFilm">Library</a></p>
+    <p><a href="~/Film/GetFavorite">Favorite</a></p>
+</div>
+<div class="side-button-1-wr">
+    <label class="side-button-1" for="side-checkbox">
+        <div class="side-b side-open"> ☰ </div>
+        <div class="side-b side-close">Закрыть</div>
+    </label>
+</div>

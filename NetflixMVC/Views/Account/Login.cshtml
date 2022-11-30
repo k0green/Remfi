@@ -1,0 +1,24 @@
+﻿<html>
+   <head>
+    <link rel="stylesheet" href="~/StyleSheet.css">
+   </head>
+<body>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+        <header class="head-form">
+            <h2>Log In</h2>
+
+            <p>login here using your username and password</p>
+        </header>
+        <input placeholder="Login" name="Login">
+    <input type="password" placeholder="Password" name="Password">
+    <p><input type="submit" value="Войти" /></p>
+        <button class="btn submits frgt-pass">Forgot Password</button>
+
+        <button class="btn submits sign-up">
+            <a asp-action="Register" asp-controller="Account">Регистрация</a>
+        </button>
+
+}
+</body>
+</html>

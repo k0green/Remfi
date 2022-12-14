@@ -1,19 +1,26 @@
-﻿<html>
+﻿@model NetflixMVC.Entities.RegisterModel
+
 <head>
     <link rel="stylesheet" href="~/StyleSheet.css">
 </head>
-<body>
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
-    {
+
+<form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
         <header class="head-form">
             <h2>Registration</h2>
         </header>
 
         <input placeholder="Name" name="Name">
+        <span asp-validation-for="Name" />
         <input placeholder="Login" name="Login">
+        <span asp-validation-for="Login" />
         <input type="password" placeholder="Password" name="Password">
+        <span asp-validation-for="Password" />
         <input type="password" placeholder="Confirm password" name="ConfirmPassword">
+        <span asp-validation-for="ConfirmPassword" />
+        <input placeholder="RoleId(1-admin; 2-user)" name="RoleId">
+        <span asp-validation-for="RoleId" />
         <p><input type="submit" value="Sign-up" /></p>
-    }
-</body>
-</html>
+    </div>
+</form>

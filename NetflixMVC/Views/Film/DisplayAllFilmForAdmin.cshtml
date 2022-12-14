@@ -4,10 +4,7 @@
 
 @model IEnumerable<NetflixMVC.Entities.Film>
 
-<form action="~/Film/FindFilm">
-    <button class="move">Main page</button>
-</form>
-
+    <td><button class="create"><a href="~/Film/CreateFilm">Add film</a></button></td>
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +13,8 @@
             <th>Genre</th>
             <th>Producer</th>
             <th>Release data</th>
-            <th>Add to my film</th>
+            <th>Edit</th>
+            <th>Delete</th>
             <th>More..</th>
         </tr>
     </thead>
@@ -29,8 +27,17 @@
                 <td>@item.Genre</td>
                 <td>@item.Producer</td>
                 <td>@item.ReleaseData</td>
-                <td><a href="~/UserFilm/CreateUserFilmConnection?filmName=@item.Name&filmDate=@item.ReleaseData">+</a></td>
-                <td><a href="~/Film/AdditionalInformation?filmId=@item.Id">Additional information</a></td>
+                <td>
+                    <button class="submits">
+                        <a href="~/Film/EditFilm?id=@item.Id">edit film</a>
+                    </button>
+                </td>
+                <td>
+                    <button class="submits">
+                        <a href="~/Film/DeleteFilm?id=@item.Id">delete film</a>
+                    </button>
+                </td>
+                <td><a href="~/Film/AdditionalInformationForAdmin?filmId=@item.Id">Additional information</a></td>
             </tr>
         }
     </tbody>

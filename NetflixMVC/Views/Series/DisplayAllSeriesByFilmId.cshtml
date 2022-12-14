@@ -4,9 +4,17 @@
 
 @model IEnumerable<NetflixMVC.Models.SeriesDisplayModel>
 
-<button class="create">
+@*<button class="create">
     <a asp-action="CreateSeries" asp-controller="Series">Add series</a>
-</button>
+</button>*@
+<form action="~/Series/CreateSeries">
+    <button class="move">Add series</button>
+</form>
+
+<form action="~/UserSeriesDetails/CreateUserSeriesConnection">
+    <button class="move">Add all series from library</button>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -46,7 +54,7 @@
                 <td>
 
                     <button class="submits">
-                        <a href="~/Series/DeleteSeries?id=@item.SeriesId">delete series</a>
+                        <a href="~/UserSeriesDetails/DeleteUserSeriesConnection?seriesId=@item.SeriesId">delete series</a>
                     </button>
                 </td>
                 @*<td><a href="~/Film/DeleteFilm?id=@item.FilmId">delete film</a></td>

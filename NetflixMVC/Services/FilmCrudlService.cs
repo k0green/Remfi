@@ -60,8 +60,12 @@ namespace NetflixMVC.Services
 
         public async Task CreateFilm(Film film)
         {
-            _dbContext.Films.Add(film);
-            _dbContext.SaveChanges();
+            var filmCheck = await _dbContext.Films.FirstOrDefaultAsync(p => p == film);
+            if (filmCheck == null)
+            {
+                _dbContext.Films.Add(film);
+                _dbContext.SaveChanges();
+            }
         }
 
         public async Task<Film> FindFilm(string name)
@@ -148,6 +152,12 @@ namespace NetflixMVC.Services
         public async Task<Film> GetFilmByName(string name)
         {
             Film? film = await _dbContext.Films.FirstOrDefaultAsync(p => p.Name == name);
+            return film;
+        }
+
+        public async Task<Film> GetFilmByNameAndDate(string name, string date)
+        {
+            Film? film = await _dbContext.Films.FirstOrDefaultAsync(p => p.Name == name && p.ReleaseData==date);
             return film;
         }
     }

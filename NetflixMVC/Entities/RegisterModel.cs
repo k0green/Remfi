@@ -4,7 +4,7 @@ namespace NetflixMVC.Entities
 {
     public class RegisterModel
     {
-        [Required(ErrorMessage = "Не указан Email")]
+        [EmailAddress(ErrorMessage = "Не указан Email")]
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Не указано имя")]
@@ -17,5 +17,8 @@ namespace NetflixMVC.Entities
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Пароль введен неверно")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Пароль введен неверно")]
+        public int RoleId { get; set; }
     }
 }

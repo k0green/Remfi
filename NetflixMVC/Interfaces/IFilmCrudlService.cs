@@ -8,6 +8,7 @@ namespace NetflixMVC.Interfaces
         public Task<List<Film>> GetAllFilm();
         public Task<Film> GetFilm(int? id);
         public Task<Film> GetFilmByName(string name);
+        public Task<Film> GetFilmByNameAndDate(string name, string date);
         public Task<List<FilmUserDisplayModel>> GetAllFilmForOneUser(int userId);
         public Task<Film> FindFilm(string name);
         public Task CreateFilm(Film film);

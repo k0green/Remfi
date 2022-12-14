@@ -12,6 +12,38 @@ namespace NetflixMVC.Services
         {
             _dbContext = dbContext;
         }
+
+        public async Task CreateUserSeriesConnection(int? userId, int filmId)
+        {
+            var series = _dbContext.Series.Where(p => p.FilmId == filmId).ToList();
+            foreach (var item in series)
+            {
+                var userSeries = _dbContext.Usersseriesdetails.FirstOrDefault(p => p.UserId == userId && p.SeriesId == item.Id);
+                if (userSeries == null)
+                {
+                    var userSeriesDetail = new Usersseriesdetail();
+                    userSeriesDetail.UserId = userId;
+                    userSeriesDetail.SeriesId = item.Id;
+                    userSeriesDetail.NumberOfView = 0;
+                    userSeriesDetail.Mark = 0;
+                    userSeriesDetail.Comment = "empty";
+                    _dbContext.Usersseriesdetails.Add(userSeriesDetail);
+                    _dbContext.SaveChanges();
+                }
+            }
+        }
+
+        public async Task DeleteUserSeriesConnection(int? userId, int seriesId)
+        {
+            var userSeries = _dbContext.Usersseriesdetails.FirstOrDefault(p => p.UserId == userId && p.SeriesId == seriesId);
+
+            if (userSeries != null)
+            {
+                _dbContext.Usersseriesdetails.Remove(userSeries);
+                _dbContext.SaveChanges();
+            }
+        }
+
         public async Task AddMark(int? seriesId, int? userId, float mark)
         {
             Usersseriesdetail usersseriesDetail = new();

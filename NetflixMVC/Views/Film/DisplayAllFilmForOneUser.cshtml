@@ -4,7 +4,13 @@
 
 @model IEnumerable<NetflixMVC.Models.FilmUserDisplayModel>
 
-<td><button class="create"><a href="~/Film/CreateFilm">Add film</a></button></td>
+<form action="~/Film/FindFilm">
+    <button class="move">Main page</button>
+</form>
+<form action="~/Film/CreateFilm">
+    <button class="move">Add film</button>
+</form>
+@*<button class="create"><a href="~/Film/CreateFilm">Add film</a></button>*@
 <table class="table">
     <thead>
         <tr>
@@ -44,14 +50,11 @@
             <td>@item.Producer</td>
             <td>@item.ReleaseData</td>
                 <td>@item.NumberOfView  <button class="add"><a href="~/UserFilm/AddAmountOfView?id=@item.FilmId">+</a></button></td>
-            @*<td><a href="~/Film/EditFilm?id=@item.FilmId">edit film</a></td>*@
                <td><button class="submits">
                     <a href="~/Film/EditFilm?id=@item.FilmId">edit film</a>
                 </button></td>
-            @*<td><a href="~/Film/DeleteFilm?id=@item.FilmId">delete film</a></td>
-            <td><a href="~/Film/AdditionalInformation?filmId=@item.FilmId">Additional information</a></td>*@
             <td><button class="submits">
-                        <a href="~/Film/DeleteFilm?id=@item.FilmId">delete film</a>
+                        <a href="~/UserFilm/DeleteUserFilmConnection?filmId=@item.FilmId">delete film</a>
                 </button></td>
                 <td>
                     <button class="submits">

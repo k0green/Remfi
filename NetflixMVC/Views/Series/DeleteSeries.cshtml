@@ -5,8 +5,7 @@
     <link rel="stylesheet" href="~/CreateForm.css">
 </head>
 <body>
-    @using (Html.BeginForm("DeleteSeries", "Series", FormMethod.Post))
-    {
+    <form asp-action="DeleteSeries" asp-controller="Series" asp-route-id="@Model.Id">
         <header class="head-form">
             <h2>Delete</h2>
             <p>Are you sure to delete</p>
@@ -14,6 +13,6 @@
             <p>Series @Html.DisplayFor(model=>model.NumberOfSeries)</p>
         </header>
         <p><input type="submit" value="Delete" /></p>
-    }
+    </form>
 </body>
 </html>

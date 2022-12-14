@@ -7,7 +7,9 @@ namespace NetflixMVC.Interfaces
     {
         public List<FilmUserDisplayModel> GetAllFilmForUser(int? userId);
         public Task<Userfilm> GetOneFilmForUser(int? userId, int? filmId);
+        //public Task CreateUserFilmConnection(int? userId, int filmId);
         public Task CreateUserFilmConnection(int? userId, string filmName, string filmDate);
+        public Task DeleteUserFilmConnection(int? userId, int filmId);
         public Task AddAmountOfView(int? filmId, int userId);
         public Task<int> GetAmountOfView(int? filmId, int? userId);
         public Task AddToFavorite(int? filmId, int? userId, bool favorite);

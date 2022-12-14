@@ -26,11 +26,18 @@ namespace NetflixMVC.Controllers
             return View(_crudlUserFilmService.GetAllFilmForUser(int.Parse(Request.Cookies["UserId"])));
         }
 
-        public async Task<IActionResult> CreateUserFilmConnection(string filmName, string filmDate)
+        public async Task<IActionResult> CreateUserFilmConnection(int? userId, string filmName, string filmDate)
         {
-            _crudlUserFilmService.CreateUserFilmConnection(int.Parse(Request.Cookies["UserId"]), filmName, filmDate);
+            await _crudlUserFilmService.CreateUserFilmConnection(int.Parse(Request.Cookies["UserId"]), filmName, filmDate);
             return RedirectToAction("DisplayAllFilmForOneUser", "Film");
         }
+
+        public async Task<IActionResult> DeleteUserFilmConnection(int filmId)
+        {
+            await _crudlUserFilmService.DeleteUserFilmConnection(int.Parse(Request.Cookies["UserId"]), filmId);
+            return RedirectToAction("DisplayAllFilmForOneUser", "Film");
+        }
+
         public async Task<IActionResult> AddAmountOfView(int id)
         {
             await _crudlUserFilmService.AddAmountOfView(id, int.Parse(Request.Cookies["UserId"]));

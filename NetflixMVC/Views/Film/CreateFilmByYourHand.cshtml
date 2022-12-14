@@ -1,0 +1,51 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="~/CreateForm.css">
+</head>
+<body>
+    <style>
+        #container {
+            width: 500px;
+            margin: 0 auto;
+            background: url("faux-columns.png") repeat-y;
+            overflow: hidden;
+        }
+
+        #sidebar {
+            float: left;
+        }
+
+        #content {
+            float: right;
+        }
+    </style>
+    @using (Html.BeginForm("CreateFilmByYourHand", "Film", FormMethod.Post))
+    {
+        <header class="head-form">
+            <h2>Create</h2>
+        </header>
+
+        <div id="container">
+            <div id="sidebar">
+                <p>
+                    @Html.TextBox("Name", "Name")
+                    @Html.TextBox("DurationTime", "Duration time")
+                    @Html.TextBox("Rating", "Rating")
+                    @Html.TextBox("ReleaseData", "Release data")
+                    @Html.TextBox("Country", "Country")
+                </p>
+            </div>
+            <div id="content">
+                <p>
+                    @Html.TextBox("Producer", "Producer")
+                    @Html.TextBox("Genre", "Genre")
+                    @Html.TextBox("Description", "Description")
+                    @Html.TextBox("CheckSeries", "Check Series(series - true)")
+                    @Html.TextBox("Link", "Link")
+                </p>
+            </div>
+        </div>
+        <input type="submit" value="Create" />
+    }
+</body>
+</html>

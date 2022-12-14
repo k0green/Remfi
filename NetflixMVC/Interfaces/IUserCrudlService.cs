@@ -7,6 +7,7 @@ namespace NetflixMVC.Interfaces
         public Task<List<User>> GetAllUser();
         public Task<User> GetUser(int id);
         public Task<User> GetUserByLogin(string login);
-        public Task CreateUser(string name, string login, string password);
+        //public Task CreateUser(string name, string login, string password, int? roleId);
+        public Task CreateUser(RegisterModel model);
     }
 }

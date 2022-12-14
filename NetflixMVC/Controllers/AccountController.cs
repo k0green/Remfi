@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using NetflixMVC.Entities;
 using NetflixMVC.Interfaces;
+using System.Text.RegularExpressions;
 
 namespace NetflixMVC.Controllers
 {
@@ -24,22 +25,26 @@ namespace NetflixMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            if (ModelState.IsValid)
-            {
-                User user = await _userCrudlService.GetUserByLogin(model.Login);
-                var dbpwd = user.Password;
-                var mpwd = model.Password;
-                if (IRegistrationService.VerifyHashedPassword(dbpwd, mpwd))
+                if (ModelState.IsValid)
                 {
-                    if (user != null)
+                    User user = await _userCrudlService.GetUserByLogin(model.Login);
+                    var dbpwd = user.Password;
+                    var mpwd = model.Password;
+                    if (IRegistrationService.VerifyHashedPassword(dbpwd, mpwd))
                     {
-                        await Authenticate(model.Login); // аутентификация
-                        Response.Cookies.Append("UserId", $"{user.Id}");
-                        return RedirectToAction("FindFilm", "Film");
+                        if (user != null)
+                        {
+                            await Authenticate(model.Login); // аутентификация
+                            Response.Cookies.Append("UserId", $"{user.Id}");
+                            if(user.RoleId==1)
+                            {
+                                return RedirectToAction("DisplayAllFilmForAdmin", "Film");
+                            }
+                            return RedirectToAction("FindFilm", "Film");
+                        }
                     }
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }
-            }
+                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             return View(model);
         }
         [HttpGet]
@@ -53,18 +58,27 @@ namespace NetflixMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userCrudlService.GetUserByLogin(model.Login);
-                if (user == null)
+                Regex regex = new Regex(@"(\w*)<(\w*)");
+                MatchCollection matchesName = regex.Matches(model.Name);
+                MatchCollection matchesPassword = regex.Matches(model.Password);
+                if (matchesName.Count == 0 && matchesPassword.Count == 0)
                 {
-                    _userCrudlService.CreateUser(model.Name, model.Login, model.Password);
+                    User user = await _userCrudlService.GetUserByLogin(model.Login);
+                    if (user == null)
+                    {
+                        //_userCrudlService.CreateUser(model.Name, model.Login, model.Password, user.RoleId);
+                        _userCrudlService.CreateUser(model);
 
-                    await Authenticate(model.Login); // аутентификация
+                        await Authenticate(model.Login); // аутентификация
 
-                    return RedirectToAction("Login", "Account");
+                        return RedirectToAction("Login", "Account");
+                    }
+                    else
+                        ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }
-                else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
+            ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             return View(model);
         }
 
@@ -81,8 +95,15 @@ namespace NetflixMVC.Controllers
 
         public async Task<IActionResult> Logout()
         {
+            Response.Cookies.Delete("UserId");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("FindFilm", "Film");
+        }
+
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userCrudlService.GetUser(int.Parse(Request.Cookies["UserId"]));
+            return View(user);
         }
     }
 }

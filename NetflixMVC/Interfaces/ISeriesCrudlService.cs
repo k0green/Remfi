@@ -6,6 +6,7 @@ namespace NetflixMVC.Interfaces
     public interface ISeriesCrudlService
     {
         public Task<List<SeriesDisplayModel>> GetAllSeriesForOneFilm(int? filmId, int userId);
+        public Task<List<Series>> GetAllSeriesForOneFilmForAdmin(int? filmId);
         public Series GetOneSeries(int? seriesId);
         public Task CreateSeries(Series series);
         public Task<Series> UpdateSeries(int? id);

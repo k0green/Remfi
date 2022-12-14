@@ -5,6 +5,8 @@ namespace NetflixMVC.Interfaces
 {
     public interface IUserSeriesDetailsCrudlService
     {
+        public Task CreateUserSeriesConnection(int? userId, int seriesId);
+        public Task DeleteUserSeriesConnection(int? userId, int seriesId);
         public Task AddMark(int? seriesId, int? userId, float mark);
         public Task AddComments(int? seriesId, int? userId, string comments);
         public Task<float> GetMark(int? seriesId, int? userId);

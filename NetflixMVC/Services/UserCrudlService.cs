@@ -23,7 +23,7 @@ namespace NetflixMVC.Services
         public async Task<User> GetUser(int id)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(d => d.Id == id);
-            return user ?? throw new Exception();
+            return user;
         }
 
         public async Task<User> GetUserByLogin(string login)
@@ -33,14 +33,16 @@ namespace NetflixMVC.Services
             return user;
         }
 
-        public async Task CreateUser(string name, string login, string password)
+        //public async Task CreateUser(string name, string login, string password, int? roleId)
+        public async Task CreateUser(RegisterModel model)
         {
             await _dbContext.Users
                 .AddAsync(new User 
                 { 
-                    Name = name, 
-                    Login = login, 
-                    Password = IRegistrationService.HashPassword(password)
+                    Name = model.Name, 
+                    Login = model.Login, 
+                    Password = IRegistrationService.HashPassword(model.Password),
+                    RoleId = model.RoleId,
                 });
             _dbContext.SaveChanges();
         }

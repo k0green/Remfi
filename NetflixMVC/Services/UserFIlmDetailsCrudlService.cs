@@ -50,14 +50,15 @@ namespace NetflixMVC.Services
         public async Task<float> GetMark(int? filmId, int? userId)
         {
             var usersfilmsdetail = _dbContext.Usersfilmsdetails.FirstOrDefault(p => p.UserId == userId && p.FilmId == filmId);
-            if (usersfilmsdetail == null)
-            {
-                return 0;
-            }
-            else
+            if (usersfilmsdetail != null)
             {
                 var mark = usersfilmsdetail.Mark;
                 return mark;
+            }
+            else
+            {
+                
+                return 0;
             }
         }
 

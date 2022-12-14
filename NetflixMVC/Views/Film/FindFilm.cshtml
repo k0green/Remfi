@@ -3,11 +3,23 @@
     <link rel="stylesheet" href="~/FindFilmStyle.css">
 </head>
 <body>
-<form style="margin-left: 87%;" action="~/Account/Login">
+@*<form style="margin-left: 87%;" action="~/Account/Login">
     <button class="pressed-button">Sign-in</button>
-</form>
+</form>*@
+    @if (ViewBag.Button == "yes")
+    {
+            <form style="margin-left: 87%;" action="~/Account/Logout">
+                <button class="pressed-button">Sign-out</button>
+            </form>
+    }
+    else
+    {
+            <form style="margin-left: 87%;" action="~/Account/Login">
+                <button class="pressed-button">Sign-in</button>
+            </form>
+    }
     <header class="header-name">
-        <h2 style="margin-top: 100px">NETFLIX</h2>
+        <h2 style="margin-top: 100px">REMFI</h2>
     </header>
     <form class="form-find" asp-action="FindFilmPost" asp-controller="Film">
             <div class="text-field__group">
@@ -20,11 +32,24 @@
 <input type="checkbox" id="side-checkbox" />
 <div class="side-panel">
     <label class="side-button-2" for="side-checkbox">+</label>
-    <div class="side-title">
-        <form action="~/Account/Login">
-            <button class="pressed-button">Sign-in</button>
-        </form>
-    </div>
+
+    @if(ViewBag.Button=="yes")
+    {
+        <div class="side-title">
+            <form action="~/Account/Profile">
+                <button class="pressed-button">Profile</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="side-title">
+            <form action="~/Account/Login">
+                <button class="pressed-button">Sign-in</button>
+            </form>
+        </div>
+    }
+
     <p>
         <a href="~/Film/DisplayAllFilmForOneUser">My films</a>
     </p>

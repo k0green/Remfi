@@ -77,14 +77,37 @@ namespace NetflixMVC.Services
         public async Task CreateUserFilmConnection(int? userId, string filmName, string filmDate)
         {
             var film = _dbContext.Films.FirstOrDefault(p => p.Name == filmName && p.ReleaseData == filmDate);
-            var userFilm = new Userfilm();
-            userFilm.UserId = userId;
-            userFilm.FilmId = film.Id;
-            userFilm.NumberOfView = 0;
-            userFilm.Favorites = false;
-            _dbContext.Userfilms.Add(userFilm);
-            _dbContext.SaveChanges();
+            var uFilm = _dbContext.Userfilms.FirstOrDefault(p => p.UserId == userId && p.FilmId == film.Id);
+            if (uFilm == null)
+            {
+                var userFilm = new Userfilm();
+                userFilm.UserId = userId;
+                userFilm.FilmId = film.Id;
+                userFilm.NumberOfView = 0;
+                userFilm.Favorites = false;
+                _dbContext.Userfilms.Add(userFilm);
+                var userFilmDetails = new Usersfilmsdetail();
+                userFilmDetails.UserId = userId;
+                userFilmDetails.FilmId = film.Id;
+                userFilmDetails.Comment = "empty";
+                userFilmDetails.Favorites = false;
+                userFilmDetails.Mark = 0;
+                _dbContext.Usersfilmsdetails.Add(userFilmDetails);
+                _dbContext.SaveChanges();
+            }
         }
+
+        public async Task DeleteUserFilmConnection(int? userId, int filmId)
+        {
+            var userFilm = _dbContext.Userfilms.FirstOrDefault(p => p.UserId == userId && p.FilmId == filmId);
+
+            if (userFilm != null)
+            {
+                _dbContext.Userfilms.Remove(userFilm);
+                _dbContext.SaveChanges();
+            }
+        }
+
         public async Task AddAmountOfView(int? filmId, int userId)
         {
             var film = _dbContext.Userfilms.FirstOrDefault(p => p.FilmId == filmId && p.UserId == userId);
@@ -94,8 +117,12 @@ namespace NetflixMVC.Services
 
         public async Task<int> GetAmountOfView(int? filmId, int? userId)
         {
+            int amountOfView = 0;
             var film = _dbContext.Userfilms.FirstOrDefault(p => p.FilmId == filmId && p.UserId == userId);
-            int amountOfView = film.NumberOfView;
+            if (film != null)
+            {
+                amountOfView = film.NumberOfView;
+            }
             return amountOfView;
         }
         public async Task AddToFavorite(int? filmId, int? userId, bool favorite)

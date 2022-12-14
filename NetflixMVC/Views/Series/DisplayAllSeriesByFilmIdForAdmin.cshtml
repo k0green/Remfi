@@ -1,0 +1,44 @@
+﻿<head>
+    <link rel="stylesheet" href="~/table.css">
+</head>
+
+@model IEnumerable<NetflixMVC.Entities.Series>
+
+@*<button class="create">
+    <a asp-action="CreateSeries" asp-controller="Series">Add series</a>
+</button>*@
+<form action="~/Series/CreateSeries">
+    <button class="move">Add series</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Season</th>
+            <th>Number of series</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Season</td>
+                <td>@item.NumberOfSeries</td>
+                <td>
+                    <button class="submits">
+                        <a href="~/Series/EditSeries?id=@item.Id">edit series</a>
+                    </button>
+                </td>
+                <td>
+
+                    <button class="submits">
+                        <a href="~/Series/DeleteSeries?id=@item.Id">delete series</a>
+                    </button>
+                </td>
+                @*<td><a href="~/Film/DeleteFilm?id=@item.FilmId">delete film</a></td>
+            <td><a href="~/Film/AdditionalInformation?filmId=@item.FilmId">Additional information</a></td>*@
+            </tr>
+        }
+    </tbody>
+</table>

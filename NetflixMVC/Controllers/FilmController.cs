@@ -14,20 +14,30 @@ namespace NetflixMVC.Controllers
         private readonly IUserFilmCrudlService _userFilmCrudlService;
         private readonly ISeriesCrudlService _seriesCrudlService;
         private readonly IUserFilmDetailsCrudlService _userFilmDetailsCrudlService;
+        private readonly IUserCrudlService _userCrudlService;
 
         public FilmController(IFilmCrudlService crudlFilmService,
             ISeriesCrudlService seriesCrudlService,
-            IUserFilmDetailsCrudlService userFilmDetailsCrudlService, IUserFilmCrudlService userFilmCrudlService)
+            IUserFilmDetailsCrudlService userFilmDetailsCrudlService,
+            IUserFilmCrudlService userFilmCrudlService,
+            IUserCrudlService userCrudlService)
         {
             _crudlFilmService = crudlFilmService;
             _seriesCrudlService = seriesCrudlService;
             _userFilmDetailsCrudlService = userFilmDetailsCrudlService;
             _userFilmCrudlService = userFilmCrudlService;
+            _userCrudlService = userCrudlService;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> DisplayAllFilm()
+        {
+            return View(await _crudlFilmService.GetAllFilm());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DisplayAllFilmForAdmin()
         {
             return View(await _crudlFilmService.GetAllFilm());
         }
@@ -55,6 +65,17 @@ namespace NetflixMVC.Controllers
 
             return View(film);
         }
+
+        public async Task<IActionResult> AdditionalInformationForAdmin(int? filmId)
+        {
+            var film = await _crudlFilmService.GetFilm(filmId);
+            Response.Cookies.Append("FilmId", $"{film.Id}");
+            ViewBag.CheckSeries = film.CheckSeries;
+            Response.Cookies.Append("FilmIdForCreateSeries", $"{filmId}");
+
+            return View(film);
+        }
+
         public async Task<IActionResult> GetFavorite()
         {
             var film = new List<Film>();
@@ -73,10 +94,24 @@ namespace NetflixMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFilm(Film film)
+        public async Task<IActionResult> CreateFilm(Film film)//////////////
         {
             await _crudlFilmService.CreateFilm(film);
-            return Redirect($"~/UserFilm/CreateUserFilmConnection?filmName={film.Name}&filmDate={film.ReleaseData}");
+            return Redirect($"~/Film/DisplayAllFilmForAdmin");
+        }
+
+        [HttpGet]
+        public IActionResult CreateFilmByYourHand()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateFilmByYourHand(Film film)
+        {
+            await _crudlFilmService.CreateFilm(film);
+            var findFilm = await _crudlFilmService.GetFilmByNameAndDate(film.Name, film.ReleaseData);
+            return Redirect($"~/UserFilm/CreateUserFilmConnection?filmid={findFilm.Id}");
         }
 
         [HttpGet]
@@ -93,6 +128,15 @@ namespace NetflixMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> FindFilm()
         {
+            var user = Request.Cookies["UserId"];
+            if (user == null)
+            {
+                ViewBag.Button = "no";
+            }
+            else
+            {
+                ViewBag.Button = "yes";
+            }
             return View();
         }
 
@@ -156,13 +200,13 @@ namespace NetflixMVC.Controllers
             return NotFound();
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteFilm(int? id)
+        [HttpPost]
+        public async Task<IActionResult> DeleteFilmes(int? id)
         {
             if (id != null)
             {
                 await _crudlFilmService.DeleteFilm(id);
-                return RedirectToAction("DisplayAllFilm");
+                return RedirectToAction("DisplayAllFilmForAdmin");
             }
             return NotFound();
         }

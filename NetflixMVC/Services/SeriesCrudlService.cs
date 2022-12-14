@@ -59,6 +59,13 @@ namespace NetflixMVC.Services
             return listSeries;
         }
 
+        public async Task<List<Series>> GetAllSeriesForOneFilmForAdmin(int? filmId)
+        {
+            var listSeries = _dbContext.Series.Where(p=>p.FilmId==filmId).ToList();
+
+            return listSeries;
+        }
+
         public Series GetOneSeries(int? seriesId)
         {
            Series series = _dbContext.Series.FirstOrDefault(s => s.Id == seriesId) ?? throw new Exception();

@@ -20,6 +20,7 @@ namespace NetflixMVC
         }
 
         public virtual DbSet<Film> Films { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Series> Series { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Userfilm> Userfilms { get; set; } = null!;
@@ -70,6 +71,8 @@ namespace NetflixMVC
                     .HasMaxLength(100)
                     .HasColumnName("name");
 
+                entity.Property(e => e.NumberOfView).HasColumnName("numberOfView");
+
                 entity.Property(e => e.Producer)
                     .HasMaxLength(40)
                     .HasColumnName("producer");
@@ -83,32 +86,38 @@ namespace NetflixMVC
                 entity.Property(e => e.CheckSeries).HasColumnName("series");
             });
 
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.ToTable("role");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(30)
+                    .HasColumnName("name");
+            });
+
             modelBuilder.Entity<Series>(entity =>
             {
-                modelBuilder.Entity<Series>(entity =>
-                {
-                    entity.ToTable("series");
+                entity.ToTable("series");
 
-                    entity.HasIndex(e => e.FilmId, "filmId");
+                entity.HasIndex(e => e.FilmId, "filmId");
 
-                    entity.Property(e => e.Id)
-                        .ValueGeneratedNever()
-                        .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                    entity.Property(e => e.FilmId).HasColumnName("filmId");
+                entity.Property(e => e.FilmId).HasColumnName("filmId");
 
-                    entity.Property(e => e.NumberOfSeries).HasColumnName("numberOfSeries");
+                entity.Property(e => e.NumberOfSeries).HasColumnName("numberOfSeries");
 
-                    entity.Property(e => e.NumdersOfViews).HasColumnName("numdersOfViews");
+                entity.Property(e => e.NumdersOfViews).HasColumnName("numdersOfViews");
 
-                    entity.Property(e => e.Season).HasColumnName("season");
+                entity.Property(e => e.Season).HasColumnName("season");
 
-                    entity.HasOne(d => d.Film)
-                        .WithMany(p => p.SeriesNavigation)
-                        .HasForeignKey(d => d.FilmId)
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("series_ibfk_1");
-                });
+                entity.HasOne(d => d.Film)
+                    .WithMany(p => p.SeriesNavigation)
+                    .HasForeignKey(d => d.FilmId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("series_ibfk_1");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -117,6 +126,8 @@ namespace NetflixMVC
 
                 entity.HasIndex(e => e.Login, "login")
                     .IsUnique();
+
+                entity.HasIndex(e => e.RoleId, "role_fk");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -131,6 +142,14 @@ namespace NetflixMVC
                 entity.Property(e => e.Password)
                     .HasMaxLength(75)
                     .HasColumnName("password");
+
+                entity.Property(e => e.RoleId).HasColumnName("roleId");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("role_fk");
             });
 
             modelBuilder.Entity<Userfilm>(entity =>
@@ -152,13 +171,13 @@ namespace NetflixMVC
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.Film)
-                    .WithMany()
+                    .WithMany(p => p.Userfilms)
                     .HasForeignKey(d => d.FilmId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("userfilm_ibfk_2");
 
                 entity.HasOne(d => d.User)
-                    .WithMany()
+                    .WithMany(p => p.Userfilms)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("userfilm_ibfk_1");
@@ -170,6 +189,8 @@ namespace NetflixMVC
 
                 entity.HasIndex(e => e.FilmId, "userSeries_fk");
 
+                entity.Property(e => e.Id).HasColumnName("id");
+
                 entity.Property(e => e.Comment)
                     .HasColumnType("text")
                     .HasColumnName("comment");
@@ -178,14 +199,12 @@ namespace NetflixMVC
 
                 entity.Property(e => e.FilmId).HasColumnName("filmId");
 
-                entity.Property(e => e.Id).HasColumnName("id");
-
                 entity.Property(e => e.Mark).HasColumnName("mark");
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.Film)
-                    .WithMany()
+                    .WithMany(p => p.Usersfilmsdetails)
                     .HasForeignKey(d => d.FilmId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("filmDetails_fk");
@@ -197,11 +216,11 @@ namespace NetflixMVC
 
                 entity.HasIndex(e => e.SeriesId, "seriesDetails_fk");
 
+                entity.Property(e => e.Id).HasColumnName("id");
+
                 entity.Property(e => e.Comment)
                     .HasColumnType("text")
                     .HasColumnName("comment");
-
-                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Mark).HasColumnName("mark");
 
@@ -212,7 +231,7 @@ namespace NetflixMVC
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.HasOne(d => d.Series)
-                    .WithMany()
+                    .WithMany(p => p.Usersseriesdetails)
                     .HasForeignKey(d => d.SeriesId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("seriesDetails_fk");

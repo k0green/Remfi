@@ -19,6 +19,18 @@ namespace NetflixMVC.Controllers
             _crudlSeriesCrudlService = crudlSeriesService;
         }
 
+        public async Task<IActionResult> CreateUserSeriesConnection()
+        {
+            await _crudlUserSeriesDetailsService.CreateUserSeriesConnection(int.Parse(Request.Cookies["UserId"]), int.Parse(Request.Cookies["FilmIdForCreateSeries"]));
+            return Redirect($"~/Series/DisplayAllSeriesByFilmId?filmId={int.Parse(Request.Cookies["FilmIdForCreateSeries"])}");
+        }
+
+        public async Task<IActionResult> DeleteUserSeriesConnection(int seriesId)
+        {
+            await _crudlUserSeriesDetailsService.DeleteUserSeriesConnection(int.Parse(Request.Cookies["UserId"]), seriesId);
+            return RedirectToAction("DisplayAllFilmForOneUser", "Film");
+        }
+
         [HttpGet]
         public async Task<IActionResult> AddSeriesMark(int? seriesId)
         {

@@ -5,14 +5,13 @@
     <link rel="stylesheet" href="~/CreateForm.css">
 </head>
 <body>
-    @using (Html.BeginForm("DeleteFilm", "Film", FormMethod.Post))
-    {
+    <form asp-action="DeleteFilmes" asp-controller="Film" asp-route-id="@Model.Id">
         <header class="head-form">
             <h2>Delete</h2>
             <p>Are you sure to delete</p>
+            <p>@Html.DisplayFor(model=>model.Name)</p>
         </header>
-        @Html.DisplayFor(model=>model.Name)
         <p><input type="submit" value="Delete" /></p>
-    }
+    </form>
 </body>
 </html>

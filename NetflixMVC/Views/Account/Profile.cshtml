@@ -1,0 +1,21 @@
+﻿@model NetflixMVC.Entities.User
+
+<head>
+    <link rel="stylesheet" href="~/StyleSheet.css">
+</head>
+
+<form asp-action="Profile" asp-controller="Account" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <header class="head-form">
+            <h2>Profile</h2>
+
+            <p>login here using your username and password</p>
+        </header>
+        <p>@Html.DisplayFor(model => model.Name)</p>
+
+        <button class="btn submits sign-up">
+            <a asp-action="Logout" asp-controller="Account">Sign-out</a>
+        </button>
+    </div>
+</form>

@@ -12,17 +12,13 @@
         <p>@Html.DisplayFor(model => model.Description)</p>
         <p>@Html.DisplayFor(model => model.Producer)</p>
         <p>@Html.DisplayFor(model => model.Country)</p>
-            <p>Your amount of watch @ViewBag.UserFilm <a href="~/UserFilm/AddAmountOfView?id=@Model.Id">+</a></p>
-            <p>Your own mark: @ViewBag.Mark  <a href="~/UserFilmDetails/AddFilmMark?filmId=@Model.Id">Add mark</a></p>
-            <p>Your own comment: @ViewBag.Comment   <a href="~/UserFilmDetails/AddFilmComment?filmId=@Model.Id">Add comment</a></p>
-            <p>Add to my films<a href="~/UserFilm/CreateUserFilmConnection?filmId=@Model.Id">+</a></p>
             <button class="btn submits sign-up">
                <a href="@Html.DisplayFor(model => model.Link)">Watch</a>
             </button>
         @if(ViewBag.CheckSeries)
         {
             <button class="btn submits sign-up">
-                    <a href="~/Series/DisplayAllSeriesByFilmId?filmId=@Model.Id">Series</a>
+                    <a href="~/Series/DisplayAllSeriesByFilmIdForAdmin?filmId=@Model.Id">Series</a>
             </button>
         }
     </form>
